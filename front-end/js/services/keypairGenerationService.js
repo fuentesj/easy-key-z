@@ -1,19 +1,21 @@
-app.factory("keypairGenerationService", ["$http", function($http) {
-
+app.factory("KeypairGenerationService", ["$http", function($http) {
+	
 	return {
-		postKeypairGeneration: function(encryption_method, pkey_size) {
+		generateKeypair: function(encryption_method, pkey_size) {
 			return $http({
-				method: 'GET',
-				url: 'http://localhost:9200/gen_private_key?encryption_method='+encryption_method+'&'+'pkey_size='+pkey_size
+				method: 'POST',
+				url: 'http://localhost:5000/keypair?encryption_method='+encryption_method+'&'+'pkey_size='+pkey_size
 			}).then(
 				function successfulCallback(response) {
+					console.log("success");
 					return response;
 				},
-				function errorCallback(err){
-					return err;
+				function errorCallback(err) {
+					console.log("error")
+					return err;				
 				}
-
 			);
 		}
 	}
+
 }]);

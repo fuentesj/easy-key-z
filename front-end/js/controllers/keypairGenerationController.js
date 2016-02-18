@@ -2,7 +2,13 @@ app.controller("KeypairGenerationController", ["$scope", "KeypairGenerationServi
 
 	$scope.encryption_selected = false;
 
-	$scope.generateKeypair = function(encryption_method, pkey_size, pkey_file) {
+	$scope.passphrase = "";
+
+	$scope.clearPassphrase = function() {
+		$scope.passphrase = "";
+	};
+
+	$scope.generateKeypair = function(encryption_method, pkey_size, pkey_file, passphrase) {
 		
 		if (!encryption_method) {
 			encryption_method = "";

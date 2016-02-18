@@ -1,17 +1,25 @@
+from OpenSSL import crypto
 import subprocess
 from flask import Flask, request
 app = Flask(__name__)
 
 @app.route('/keypair', methods = ['POST'])
 def keypair():
-	encryption_method = request.args.get('encryption_method')
-	pkey_size = request.args.get('pkey_size')
-	pkey_file = request.args.get('pkey_file')
-	passphrase = request.args.get('passphrase')
+	encryption_method = str(request.args.get('encryption_method'))
+	pkey_size = int(request.args.get('pkey_size'))
+	pkey_file_name = request.args.get('pkey_file')
+	passphrase = str(request.args.get('passphrase'))
+
+	private_key = crypto.PKey()
+	private_key.generate_key(crypto.TYPE_RSA, pkey_size)
+	private_key_file = open(pkey_file_name, "w")
 	if (encryption_method):
-		keypair_gen_command = "openssl genrsa -" + str(encryption_method) + " -out " + str(pkey_file) + " " + str(pkey_size) + " -passout " + passphrase
+		print "Cipher: " + encryption_method
+		print private_key_file.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, private_key, encryption_method, passphrase))
 	else:
-		subprocess.call("openssl genrsa" + " -out " + str(pkey_file) + " " + str(pkey_size), shell=True)
+		print private_key_file.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, private_key))
+
+	private_key_file.close()
 	return 'Keypair successfully created.', 200
 
 

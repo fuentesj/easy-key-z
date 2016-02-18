@@ -22,10 +22,10 @@
 					<label><input type="radio" name="aes192" class="buffer-margin-right"value="aes192" ng-model="encryption_method">aes192</label>
 					<label><input type="radio" name="aes256" class="buffer-margin-right"value="aes256" ng-model="encryption_method">aes256</label>
 					<label><input type="radio" name="des3" class="buffer-margin-right" value="des3" ng-model="encryption_method">des3</label>
-					<label><input type="radio" name="none" class="buffer-margin-right" checked="checked" ng-model="encryption_method">none</label>
+					<label><input type="radio" name="none" class="buffer-margin-right" checked="checked" ng-model="encryption_method" ng-change="clearPassphrase()">none</label>
 
 					<h3>Passphrase<h3>
-					<input id="passphrae" ng-disabled="!encryption_method" ng-model="passphrase" class="form-control" type="password">
+					<input id="passphrase" ng-disabled="!encryption_method" ng-model="passphrase" class="form-control" type="password">
 
 					<h3>Size</h3>
 					<input id="privateKeySize" class="form-control" ng-model="pkey_size" placeholder="Default size is 512 bits">
@@ -38,7 +38,7 @@
 
 			<div class="row">
 				<div class="col-md-4">
-					<button type="button" class="btn btn-primary buffer-margin-top" ng-click="generateKeypair(encryption_method, pkey_size, pkey_file)">Generate Keypair</button>
+					<button type="button" class="btn btn-primary buffer-margin-top" ng-click="generateKeypair(encryption_method, pkey_size, pkey_file, passphrase)">Generate Keypair</button>
 				</div>
 			</div>
 

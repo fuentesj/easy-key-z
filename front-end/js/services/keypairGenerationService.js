@@ -12,15 +12,7 @@ app.factory("KeypairGenerationService", ["$http", function($http) {
 					'pkey_file': pkey_file,
 					'passphrase': passphrase
 				}
-			}).then(
-				function successfulCallback(response) {
-					console.log("success");
-				},
-				function errorCallback(err) {
-					console.log("error")
-					return err;				
-				}
-			);
+			});
 		}
 	}
 

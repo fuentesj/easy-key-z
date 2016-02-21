@@ -12,7 +12,7 @@ def keypair():
 
 	private_key = crypto.PKey()
 	private_key.generate_key(crypto.TYPE_RSA, pkey_size)
-	private_key_file = open(pkey_file_name, "w")
+	private_key_file = open("certificates/" + pkey_file_name, "w")
 	if (encryption_method):
 		print "Cipher: " + encryption_method
 		print private_key_file.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, private_key, encryption_method, passphrase))

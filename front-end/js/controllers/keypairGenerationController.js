@@ -21,7 +21,7 @@ app.controller("KeypairGenerationController", ["$scope", "KeypairGenerationServi
 		if (!pkey_file) {
 			pkey_file = "pkey.pem"
 		}
-
+		
 		KeypairGenerationService.generateKeypair(encryption_method, pkey_size, pkey_file, passphrase);
 
 	}

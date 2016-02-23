@@ -2,10 +2,9 @@ app.controller("KeypairGenerationController", ["$scope", "KeypairGenerationServi
 
 	$scope.encryption_selected = false;
 	$scope.showSuccessAlert = false;
-
+	$scope.showErrorAlert = false;
+	$scope.errorMessage = "";
 	$scope.passphrase = "";
-
-
 
 	$scope.clearPassphrase = function() {
 		$scope.passphrase = "";
@@ -28,11 +27,17 @@ app.controller("KeypairGenerationController", ["$scope", "KeypairGenerationServi
 		var promise = KeypairGenerationService.generateKeypair(encryption_method, pkey_size, pkey_file, passphrase)
 		promise.then(
 			function successfulCallback(response) {
+				if ($scope.showErrorAlert) {
+					$scope.showErrorAlert = false;
+				}
 				$scope.showSuccessAlert = true;
 			},
 			function errorCallback(err) {
-				console.log("error")
-				return err;				
+				if ($scope.showSuccessAlert) {
+					$scope.showSuccessAlert = false;
+				}
+				$scope.errorMessage = err["data"];
+				$scope.showErrorAlert = true;			
 			}
 		);
 

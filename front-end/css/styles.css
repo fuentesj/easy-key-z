@@ -14,3 +14,47 @@ label.buffer-margin-right {
 	margin-top: 10%;
 }
 
+.unordered-content-list {
+	border: 1px solid black;
+	list-style-type: none;
+	overflow: auto;
+	width: inherit;
+	padding-left: 0;
+}
+
+a {
+	display: block;
+	text-decoration: none;
+}
+
+ul.option_menu {
+	width: 84%;
+	margin-right: 0px;
+}
+
+.sel {
+	background:#c3effd;
+	color:#000;
+	width: 100%;
+}
+
+ul {
+    float: left;
+    height: 250px;
+}
+
+li {
+    display: inline-block;
+    margin: 0px auto 0px auto;
+}
+
+.second_column {
+	margin-top: 52px;
+	margin-left: -18%;
+}
+
+
+#csrGenerationButton {
+	margin-top: 59%;
+    margin-left: -42%;
+}

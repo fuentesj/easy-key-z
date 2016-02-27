@@ -1,13 +1,53 @@
-<div class="container" ng-controller="KeypairGenerationController">
+<div class="container" ng-controller="CsrGenerationController">
 
 	<div class="row">
-		<div class="col-md-4">
+		<div class="col-md-5">
 
 			<h2>CSR Options</h2>
 
+
+			<h3>Private Keys</h3>
+			<ul class="unordered-content-list">
+				<li ng-repeat="csr in generated_csrs" ng-click="privateKeySelected($index)" ng-class="{sel: $index == selected}">
+					<a>
+						{{ csr }}
+					</a>
+				</li>
+			</ul>
+
+			<button id="csrGenerationButton"type="button" class="btn btn-primary buffer-margin-top" ng-click="">Generate CSR</button>
+
+		</div>
+
+
+
+		<div class="col-md-4 second_column">
+
+			<h3>Common Name (CN)</h3>
+			<input class="form-control" ng-disabled="!private_key_selected">
+
+			<h3>Organization (O)</h3>
+			<input class="form-control" ng-disabled="!private_key_selected">
+
+			<h3>Organizational Unit (OU)</h3>
+			<input class="form-control" ng-disabled="!private_key_selected">
+
+			<h3>City</h3>
+			<input class="form-control" ng-disabled="!private_key_selected">
+
+			<h3>State</h3>
+			<input class="form-control" ng-disabled="!private_key_selected">
+
+			<h3>Country</h3>
+			<input class="form-control" ng-disabled="!private_key_selected">
+
+			<h3>Email</h3>
+			<input class="form-control" ng-disabled="!private_key_selected">
 			
 
 		</div>
+
+
 	</div>
 
 </div>

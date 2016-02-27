@@ -6,6 +6,8 @@
 		<script src="js/app.js"></script>
 		<script src="js/controllers/keypairGenerationController.js"></script>
 		<script src="js/services/keypairGenerationService.js"></script>
+		<script src="js/controllers/csrGenerationController.js"></script>
+		<script src="js/services/csrGenerationService.js"></script>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></link>
 		<link rel="stylesheet" href="css/styles.css"></link>
 		<link rel="shortcut icon" href="">
@@ -14,14 +16,16 @@
 
 		<div class="container">
 
-			<div class="col-md-3">
-				<ul class="nav">
-					<li><a href="#keypairGeneration">Private Key Generation</a></li>
-					<li><a href="#csrGeneration">CSR Generation</a></li>
-				</ul>
-			</div>
+			<div class="row>">
+				<div class="col-md-3">
+					<ul class="nav option_menu">
+						<li><a href="#keypairGeneration">Private Key Generation</a></li>
+						<li><a href="#csrGeneration">CSR Generation</a></li>
+					</ul>
+				</div>
 
-			<div ng-view></div>
+				<div ng-view></div>
+			</div>
 
 		</div>
 

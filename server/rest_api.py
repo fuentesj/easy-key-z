@@ -2,7 +2,8 @@ import json
 from OpenSSL import crypto
 import subprocess
 import os.path
-from flask import Flask, request
+from os import listdir
+from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 @app.route('/keypair', methods = ['POST'])
@@ -32,6 +33,14 @@ def keypair():
 
 		private_key_file.close()
 		return 'Keypair successfully created.', 201
+
+
+@app.route('/keypairs', methods = ['GET'])
+def fetch_keypairs():
+	keypair_list = listdir("certificates/");
+	print keypair_list
+	return jsonify(results=keypair_list), 200
+
 
 
 @app.after_request

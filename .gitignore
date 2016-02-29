@@ -12,3 +12,4 @@ pyvenv.cfg
 pip-selfcheck.json
 server/certificates/*
 server/certificate_signing_requests/*
+server/private_keys/*

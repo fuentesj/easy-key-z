@@ -48,6 +48,7 @@ li {
     margin: 0px auto 0px auto;
     cursor: pointer;
     cursor: hand;
+    width: 100%
 }
 
 .second_column {

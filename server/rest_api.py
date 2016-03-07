@@ -3,11 +3,18 @@ from OpenSSL import crypto
 import subprocess
 import os.path
 from os import listdir
-from flask import Flask, request, jsonify
-app = Flask(__name__)
+from flask import Flask, request, jsonify, make_response
+app = Flask(__name__, static_path='/static')
 
 PRIVATE_KEY_DIR = "private_keys/"
 CERTIFICATE_SIGNING_REQUEST_DIR = "certificate_signing_requests/"
+
+
+@app.route('/')
+@app.route('/csrGeneration')
+@app.route('/keypairGeneration')
+def basic_pages(**kwargs):
+    return make_response(open('templates/index.html').read())
 
 
 @app.route('/keypair', methods = ['POST'])

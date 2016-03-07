@@ -5,17 +5,11 @@ app.config(function($routeProvider) {
 
 	$routeProvider
 		.when('/keypairGeneration', {
-			templateUrl: '../views/keypairGeneration.html'
+			templateUrl: 'static/partials/keypairGeneration.html'
 		})
 
 		.when('/csrGeneration', {
-			templateUrl: '../views/csrGeneration.html'
-		})
+			templateUrl: 'static/partials/csrGeneration.html'
+		});
 
-
-
-
-
-
-
-})
+});

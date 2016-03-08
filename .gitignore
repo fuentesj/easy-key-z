@@ -16,3 +16,4 @@ server/private_keys/*
 *.yaml
 *.yml
 *.retry
+*.pyc

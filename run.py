@@ -1,4 +1,4 @@
 from server.rest_api import app
 
-if __name__ == "__main__":
-	app.run(debug=True)
+def application(env, start_response):
+    app.run(debug=True)

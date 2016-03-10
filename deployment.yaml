@@ -50,7 +50,7 @@
       template: src=easy-key-z-nginx-config dest=/etc/nginx/sites-available/easy-key-z
 
     - name: Add symlink betwen sites-available and sites-enabled
-      file:   
+      file:
         src: /etc/nginx/sites-available/easy-key-z
         dest:/etc/nginx/sites-enabled
         state: link

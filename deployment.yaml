@@ -43,7 +43,24 @@
       notify:
         - start uwsgi
 
+    - name: Create dir for easy-key-z within nginx sites-available dir
+      command: mkdir /etc/nginx/sites-available/easy-key-z
+
+    - name: Install nginx config file 
+      template: src=easy-key-z-nginx-config dest=/etc/nginx/sites-available/easy-key-z
+
+    - name: Add symlink betwen sites-available and sites-enabled
+      file:   
+        src: /etc/nginx/sites-available/easy-key-z
+        dest:/etc/nginx/sites-enabled
+        state: link
+      notify:
+        - restart nginx
+
   handlers:
 
     - name: start uwsgi
       service: name=easy-key-z state=started
+
+    - name: restart nginx
+      service: name=nginx state=restarted

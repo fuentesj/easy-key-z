@@ -1,0 +1,49 @@
+---
+- hosts: ec2
+  remote_user: ubuntu
+  sudo: True
+  vars:
+    wsgi_file: rest_api.py
+    wsgi_callable: app
+
+  tasks:
+
+    - name: Install pip
+      apt: pkg=python-pip update_cache=yes
+
+    - name: Install git
+      apt: pkg=git
+
+    - name: Install python-dev
+      apt: pkg=python-dev
+
+    - name: Install libffi-dev
+      apt: pkg=libffi-dev
+
+    - name: Install libssl-dev
+      apt: pkg=libssl-dev
+
+    - name: Install nginx
+      apt: pkg=nginx
+
+    - name: Install virtualenv
+      pip: name=virtualenv
+
+    - name: Install uwsgi
+      pip: name=uwsgi
+
+    - name: Pull easy-key-z source code
+      git: repo=https://github.com/fuentesj/easy-key-z.git dest=/opt/easy-key-z
+
+    - name: Install requirements.txt
+      pip: requirements=/opt/easy-key-z/server/requirements.txt extra_args=--ignore-installed
+
+    - name: Install upstart script for uwsgi
+      template: src=server/easy-key-z.conf dest=/etc/init/easy-key-z.conf
+      notify:
+        - start uwsgi
+
+  handlers:
+
+    - name: start uwsgi
+      service: name=easy-key-z state=started

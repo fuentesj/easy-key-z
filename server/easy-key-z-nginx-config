@@ -1,0 +1,9 @@
+server {
+	listen 80;
+	server_name 54.200.89.75;
+
+	location / {
+		include wsgi_params;
+		uwsgi_pass unix:/opt/easy-key-z/server/easy-key-z.sock;
+	}
+}

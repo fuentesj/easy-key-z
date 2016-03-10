@@ -52,7 +52,7 @@
     - name: Add symlink betwen sites-available and sites-enabled
       file:
         src: /etc/nginx/sites-available/easy-key-z
-        dest:/etc/nginx/sites-enabled
+        dest: /etc/nginx/sites-enabled
         state: link
       notify:
         - restart nginx

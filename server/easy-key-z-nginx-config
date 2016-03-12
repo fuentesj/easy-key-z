@@ -3,7 +3,7 @@ server {
 	server_name localhost;
 
 	location / {
-		include wsgi_params;
-		uwsgi_pass /opt/easy-key-z/server/easy-key-z.sock;
+		include uwsgi_params;
+		uwsgi_pass unix:/opt/easy-key-z/server/easy-key-z.sock;
 	}
 }

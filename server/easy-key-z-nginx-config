@@ -1,6 +1,6 @@
 server {
 	listen 8080;
-	server_name 54.187.158.164;
+	server_name localhost;
 
 	location / {
 		include wsgi_params;

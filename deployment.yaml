@@ -53,6 +53,7 @@
       file:
         path: /opt/easy-key-z/server/easy-key-z.sock 
         mode: 0666
+        group: www-data
 
     - name: Add symlink betwen sites-available and sites-enabled
       file:
@@ -62,7 +63,7 @@
         force: yes
 
     - name: Restart uwsgi
-      service: name=uwsgi state=restarted
+      service: name=easy-key-z state=restarted
 
     - name: restart nginx
       service: name=nginx state=restarted

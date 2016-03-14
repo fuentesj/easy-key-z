@@ -40,8 +40,6 @@
 
     - name: Install upstart script for uwsgi
       template: src=server/easy-key-z.conf dest=/etc/init/easy-key-z.conf
-      notify:
-        - start uwsgi
 
     - name: Create dir for easy-key-z within nginx sites-available dir
       file:
@@ -51,6 +49,11 @@
     - name: Install nginx config file 
       template: src=server/easy-key-z-nginx-config dest=/etc/nginx/sites-available
 
+    - name: Change permissions on Unix socket file
+      file:
+        path: /opt/easy-key-z/server/easy-key-z.sock 
+        mode: 0666
+
     - name: Add symlink betwen sites-available and sites-enabled
       file:
         src: /etc/nginx/sites-available/easy-key-z-nginx-config
@@ -59,11 +62,12 @@
         force: yes
       notify:
         - restart nginx
+        - start uwsgi
 
   handlers:
 
     - name: start uwsgi
-      service: name=easy-key-z state=started
+      service: name=easy-key-z state=restarted
 
     - name: restart nginx
       service: name=nginx state=restarted

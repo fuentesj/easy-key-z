@@ -54,15 +54,15 @@
         path: /opt/easy-key-z/server/easy-key-z.sock 
         mode: 0666
 
-    - name: Restart uwsgi
-      service: name=easy-key-z state=restarted
-
     - name: Add symlink betwen sites-available and sites-enabled
       file:
         src: /etc/nginx/sites-available/easy-key-z-nginx-config
         dest: /etc/nginx/sites-enabled/easy-key-z
         state: link
         force: yes
+
+    - name: Restart uwsgi
+      service: name=uwsgi state=restarted
 
     - name: restart nginx
       service: name=nginx state=restarted

@@ -51,8 +51,8 @@
 
     - name: Change permissions on Unix socket file
       file:
-        path: /opt/easy-key-z/server/easy-key-z.sock 
-        mode: 0666
+        path: /tmp/server/easy-key-z.sock 
+        mode: 0664
         group: www-data
 
     - name: Add symlink betwen sites-available and sites-enabled
@@ -63,9 +63,7 @@
         force: yes
 
     - name: Start uwsgi
-      command: uwsgi --ini easy-key-z.ini
-      args:
-        chdir: /opt/easy-key-z/server
+      service: name=easy-key-z state=started 
 
     - name: restart nginx
       service: name=nginx state=started

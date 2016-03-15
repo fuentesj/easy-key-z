@@ -62,8 +62,10 @@
         state: link
         force: yes
 
-    - name: Restart uwsgi
-      service: name=easy-key-z state=started
+    - name: Start uwsgi
+      command: uwsgi --ini easy-key-z.ini 
+      args:
+        chdir: /opt/easy-key-z/server
 
     - name: restart nginx
       service: name=nginx state=started

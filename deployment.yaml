@@ -63,7 +63,7 @@
         force: yes
 
     - name: Start uwsgi
-      command: uwsgi --ini easy-key-z.ini 
+      command: uwsgi --ini easy-key-z.ini &
       args:
         chdir: /opt/easy-key-z/server
 

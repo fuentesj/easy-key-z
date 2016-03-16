@@ -49,12 +49,6 @@
     - name: Install nginx config file 
       template: src=server/easy-key-z-nginx-config dest=/etc/nginx/sites-available
 
-    - name: Change permissions on Unix socket file
-      file:
-        path: /tmp/server/easy-key-z.sock 
-        mode: 0664
-        group: www-data
-
     - name: Add symlink betwen sites-available and sites-enabled
       file:
         src: /etc/nginx/sites-available/easy-key-z-nginx-config

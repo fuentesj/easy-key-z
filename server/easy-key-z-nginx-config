@@ -1,6 +1,6 @@
 server {
-	listen 8080
-	server_name localhost
+	listen 8080;
+	server_name localhost;
 
 	location / {
 		include uwsgi_params;

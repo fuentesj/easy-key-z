@@ -57,7 +57,7 @@
         force: yes
 
     - name: Start uwsgi
-      service: name=easy-key-z state=started 
+      service: name=easy-key-z state=restarted 
 
     - name: restart nginx
-      service: name=nginx state=started
+      service: name=nginx state=restarted

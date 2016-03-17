@@ -41,6 +41,14 @@
     - name: Install upstart script for uwsgi
       template: src=server/easy-key-z.conf dest=/etc/init/easy-key-z.conf
 
+    - name: Create uwsgi log directory
+      file:
+        state: directory
+        path: /tmp/uwsgi
+        group: www-data
+        owner: www-data
+        mode: 0664
+
     - name: Create dir for easy-key-z within nginx sites-available dir
       file:
         state: directory 

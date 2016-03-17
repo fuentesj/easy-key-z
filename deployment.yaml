@@ -56,8 +56,8 @@
         state: link
         force: yes
 
-    - name: Start uwsgi
+    - name: Restart uwsgi
       service: name=easy-key-z state=restarted 
 
-    - name: restart nginx
+    - name: Restart nginx
       service: name=nginx state=restarted

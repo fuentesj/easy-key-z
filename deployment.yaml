@@ -42,16 +42,19 @@
       file:
         state: directory
         path: /opt/easy-key-z/server/private_keys
+        mode: 0666
 
     - name: Create directory for certificate signing requests
       file:
         state: directory
         path: /opt/easy-key-z/server/certificate_signing_requests
+        mode: 0666
 
     - name: Create directory for certificates
       file:
         state: directory
         path: /opt/easy-key-z/server/certificates
+        mode: 0666
 
     - name: Install upstart script for uwsgi
       template: src=server/easy-key-z.conf dest=/etc/init/easy-key-z.conf

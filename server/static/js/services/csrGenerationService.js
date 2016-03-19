@@ -13,7 +13,7 @@ app.factory("CsrService", ["$http", function($http){
 
 			return $http({
 				method: 'POST',
-				url: 'http://52.37.97.92:5000/csr',
+				url: 'http://52.37.97.92:8080/csr',
 				data: {
 					'commonName': commonName,
 					'organization': organization,

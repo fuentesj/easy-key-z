@@ -50,20 +50,18 @@ def fetch_keypairs():
 @app.route('/csr', methods = ['POST'])
 def generate_csr():
 	request_data = json.loads(request.data.decode())
-	
-	certificate_signing_request = crypto.X509Req()
-	certificate_signing_request.get_subject().CN = str(request_data['commonName'])
-	certificate_signing_request.get_subject().O = str(request_data['organization'])
-	certificate_signing_request.get_subject().OU = str(request_data['organizationalUnit'])
-	certificate_signing_request.get_subject().L = str(request_data['city'])
-	certificate_signing_request.get_subject().ST = str(request_data['state'])
-	certificate_signing_request.get_subject().C = str(request_data['country'])
-	certificate_signing_request.get_subject().emailAddress = str(request_data['email'])
-	
 	selected_pkey_filename = str(request_data['pkey'])
 	selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read())
 	csr_filename = str(request_data['csrFilename'])
 	with open(CERTIFICATE_SIGNING_REQUEST_DIR + csr_filename, "w") as csr_file:
+		certificate_signing_request = crypto.X509Req()
+		certificate_signing_request.get_subject().CN = str(request_data['commonName'])
+		certificate_signing_request.get_subject().O = str(request_data['organization'])
+		certificate_signing_request.get_subject().OU = str(request_data['organizationalUnit'])
+		certificate_signing_request.get_subject().L = str(request_data['city'])
+		certificate_signing_request.get_subject().ST = str(request_data['state'])
+		certificate_signing_request.get_subject().C = str(request_data['country'])
+		certificate_signing_request.get_subject().emailAddress = str(request_data['email'])
 		certificate_signing_request.set_pubkey(selected_key)
 		certificate_signing_request.sign(selected_key, "sha256")
 		print csr_file.write(crypto.dump_certificate_request(crypto.FILETYPE_PEM, certificate_signing_request))

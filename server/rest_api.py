@@ -50,8 +50,6 @@ def fetch_keypairs():
 @app.route('/csr', methods = ['POST'])
 def generate_csr():
 	request_data = json.loads(request.data.decode())
-	selected_pkey_filename = str(request_data['pkey'])
-	selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename, "r").read())
 	csr_filename = str(request_data['csrFilename'])
 	with open(CERTIFICATE_SIGNING_REQUEST_DIR + csr_filename, "w") as csr_file:
 		certificate_signing_request = crypto.X509Req()
@@ -62,8 +60,10 @@ def generate_csr():
 		certificate_signing_request.get_subject().ST = str(request_data['state'])
 		certificate_signing_request.get_subject().C = str(request_data['country'])
 		certificate_signing_request.get_subject().emailAddress = str(request_data['email'])
-		certificate_signing_request.set_pubkey(selected_key)
 		certificate_signing_request.sign(selected_key, "sha256")
+		selected_pkey_filename = str(request_data['pkey'])
+		selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read())
+		certificate_signing_request.set_pubkey(selected_key)
 		print csr_file.write(crypto.dump_certificate_request(crypto.FILETYPE_PEM, certificate_signing_request))
 		return 'CSR successfully created.', 201
 

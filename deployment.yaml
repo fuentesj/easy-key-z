@@ -42,18 +42,21 @@
       file:
         state: directory
         path: /opt/easy-key-z/server/private_keys
+        owner: ubuntu
         mode: 0775
 
     - name: Create directory for certificate signing requests
       file:
         state: directory
         path: /opt/easy-key-z/server/certificate_signing_requests
+        owner: ubuntu
         mode: 0775
 
     - name: Create directory for certificates
       file:
         state: directory
         path: /opt/easy-key-z/server/certificates
+        owner: ubuntu
         mode: 0775
 
     - name: Install upstart script for uwsgi

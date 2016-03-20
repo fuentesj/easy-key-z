@@ -64,21 +64,21 @@
         state: directory 
         path: /etc/nginx/sites-available/easy-key-z
 
-    # - name: Create log directory
-    #   file:
-    #     state: directory
-    #     path: /tmp/easy-key-z-log/
-    #     owner: ubuntu
-    #     group: www-data
-    #     mode: 0664
+    - name: Create log directory
+      file:
+        state: directory
+        path: /tmp/easy-key-z-log/
+        owner: ubuntu
+        group: www-data
+        mode: 0775
 
-    # - name: Create log file
-    #   file:
-    #     state: touch
-    #     path: /tmp/easy-key-z-log/server.log
-    #     owner: ubuntu
-    #     group: www-data
-    #     mode: 0664
+    - name: Create log file
+      file:
+        state: touch
+        path: /tmp/easy-key-z-log/server.log
+        owner: ubuntu
+        group: www-data
+        mode: 0775
 
     - name: Install nginx config file 
       template: src=server/easy-key-z-nginx-config dest=/etc/nginx/sites-available

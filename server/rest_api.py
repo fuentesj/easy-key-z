@@ -1,8 +1,7 @@
 import json
 from OpenSSL import crypto
 import subprocess
-import os.path
-from os import listdir
+from os import listdir,path
 from flask import Flask, request, jsonify, make_response
 app = Flask(__name__, static_path='/static')
 
@@ -26,7 +25,7 @@ def keypair():
 	pkey_file_name = str(request_data['pkey_file'])
 	passphrase = str(request_data['passphrase'])
 
-	if os.path.isfile(PRIVATE_KEY_DIR + pkey_file_name):
+	if path.isfile(PRIVATE_KEY_DIR + pkey_file_name):
 		return 'Private key file ' + pkey_file_name + ' already exists.', 409
 	elif pkey_size <= 0:
 		return 'Invalid private key size.', 400

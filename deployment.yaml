@@ -2,32 +2,18 @@
 - hosts: ec2
   remote_user: ubuntu
   sudo: True
-  vars:
-    wsgi_file: rest_api.py
-    wsgi_callable: app
 
   tasks:
 
-    - name: Install pip
-      apt: pkg=python-pip update_cache=yes
-
-    - name: Install git
-      apt: pkg=git
-
-    - name: Install python-dev
-      apt: pkg=python-dev
-
-    - name: Install libffi-dev
-      apt: pkg=libffi-dev
-
-    - name: Install libssl-dev
-      apt: pkg=libssl-dev
-
-    - name: Install nginx
-      apt: pkg=nginx
-
-    - name: Install virtualenv
-      pip: name=virtualenv
+    - name: Install packages with apt
+      apt: pkg={{ item }} update_cache=yes
+      with_items:
+        - python-pip 
+        - git
+        - python-dev
+        - libffi-dev
+        - libssl-dev
+        - nginx
 
     - name: Install uwsgi
       pip: name=uwsgi

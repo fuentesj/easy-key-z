@@ -6,7 +6,7 @@
   tasks:
 
     - name: Install packages with apt
-      apt: pkg={{ item }} update_cache=yes
+      apt: pkg={{item}} update_cache=yes
       with_items:
         - python-pip 
         - git
@@ -24,26 +24,12 @@
     - name: Install requirements.txt
       pip: requirements=/opt/easy-key-z/server/requirements.txt extra_args=--ignore-installed
 
-    - name: Create directory for private keys
-      file:
-        state: directory
-        path: /opt/easy-key-z/server/private_keys
-        owner: ubuntu
-        mode: 0775
-
-    - name: Create directory for certificate signing requests
-      file:
-        state: directory
-        path: /opt/easy-key-z/server/certificate_signing_requests
-        owner: ubuntu
-        mode: 0775
-
-    - name: Create directory for certificates
-      file:
-        state: directory
-        path: /opt/easy-key-z/server/certificates
-        owner: ubuntu
-        mode: 0775
+    - name: Create directories for certificate components
+      file: state=directory owner=ubuntu mode=0755 path=/opt/easy-key-z/server/{{item}}
+      with_items:
+        - private_keys
+        - certificate_signing_requests
+        - certificates
 
     - name: Install upstart script for uwsgi
       template: src=server/easy-key-z.conf dest=/etc/init/easy-key-z.conf

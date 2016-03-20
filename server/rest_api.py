@@ -33,14 +33,12 @@ def keypair():
 	else:
 		private_key = crypto.PKey()
 		private_key.generate_key(crypto.TYPE_RSA, pkey_size)
-		private_key_file = open(PRIVATE_KEY_DIR + pkey_file_name, "w")
-		if (encryption_method):
-			print private_key_file.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, private_key, encryption_method, passphrase))
-		else:
-			print private_key_file.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, private_key))
-
-		private_key_file.close()
-		return 'Keypair successfully created.', 201
+		with open(PRIVATE_KEY_DIR + pkey_file_name, "w") as private_key_file:
+			if (encryption_method):
+				print private_key_file.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, private_key, encryption_method, passphrase))
+			else:
+				print private_key_file.write(crypto.dump_privatekey(crypto.FILETYPE_PEM, private_key))
+			return 'Keypair successfully created.', 201
 
 
 @app.route('/keypairs', methods = ['GET'])

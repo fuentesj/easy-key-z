@@ -4,6 +4,7 @@ import subprocess
 from os import listdir,path
 from flask import Flask, request, jsonify, make_response
 app = Flask(__name__, static_path='/static')
+app.config['PROPAGATE_EXCEPTIONS'] = True
 
 PRIVATE_KEY_DIR = "private_keys/"
 CERTIFICATE_SIGNING_REQUEST_DIR = "certificate_signing_requests/"

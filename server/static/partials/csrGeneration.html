@@ -17,6 +17,15 @@
 
 			<button id="csrGenerationButton"type="button" class="btn btn-primary buffer-margin-top" ng-click="generateCsr(commonName, organization, organizationalUnit, city, state, country, email, private_key, csrFilename)">Generate CSR</button>
 
+			<div class="alert alert-success buffer-margin-top" ng-show="showSuccessAlert">
+			   <strong>Private Key Generated!</strong> 
+			</div>
+
+
+			<div class="alert alert-danger buffer-margin-top" ng-show="showErrorAlert">
+			   <strong>{{ errorMessage }}</strong> 
+			</div>
+
 		</div>
 
 

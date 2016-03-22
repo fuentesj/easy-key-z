@@ -3,6 +3,9 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 	$scope.private_keys = undefined;
 	$scope.private_key_selected = false;
 	$scope.private_key = null;
+	$scope.showSuccessAlert = false;
+	$scope.showErrorAlert = false;
+	$scope.errorMessage = "";
 
 	$scope.privateKeySelected = function(private_key) {
 		$scope.private_key = private_key;
@@ -27,7 +30,22 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 	});
 
 	$scope.generateCsr = function(commonName, organization, organizationalUnit, city, state, country, email, private_key, csrFilename) {
-		CsrService.generateCsr(commonName, organization, organizationalUnit, city, state, country, email, $scope.private_key, csrFilename)
+		var promise = CsrService.generateCsr(commonName, organization, organizationalUnit, city, state, country, email, $scope.private_key, csrFilename)
+		promise.then(
+			function successfulCallback(response) {
+				if ($scope.showErrorAlert) {
+					$scope.showErrorAlert = false;
+				}
+				$scope.showSuccessAlert = true;
+			},
+			function errorCallback(err) {
+				if ($scope.showSuccessAlert) {
+					$scope.showSuccessAlert = false;
+				}
+				$scope.errorMessage = err["data"];
+				$scope.showErrorAlert = true;
+			}
+		);
 	}
 
 }]);

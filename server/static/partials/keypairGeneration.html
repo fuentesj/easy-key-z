@@ -24,12 +24,12 @@
 			<button type="button" class="btn btn-primary buffer-margin-top" ng-click="generateKeypair(encryption_method, pkey_size, pkey_file, passphrase)">Generate Private Key</button>
 
 
-			<div class="alert alert-success buffer-margin-top" ng-show="showSuccessAlert">
+			<div class="alert alert-success buffer-margin-top confirmation_message" ng-show="showSuccessAlert">
 			   <strong>Private Key Generated!</strong> 
 			</div>
 
 
-			<div class="alert alert-danger buffer-margin-top" ng-show="showErrorAlert">
+			<div class="alert alert-danger buffer-margin-top confirmation_message" ng-show="showErrorAlert">
 			   <strong>{{ errorMessage }}</strong> 
 			</div>
 		

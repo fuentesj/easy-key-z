@@ -70,7 +70,7 @@ def generate_csr():
 		var responseObject = {}
 		responseObject['csr'] = csr_data,
 		responseObject['message'] = 'CSR successfully created.'
-		return jsonify(resultsresponseObject), 201
+		return jsonify(responseObject), 201
 
 @app.after_request
 def after_request(response):

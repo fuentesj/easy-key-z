@@ -63,8 +63,8 @@ def generate_csr():
 		certificate_signing_request.get_subject().emailAddress = str(request_data['email'])
 		selected_pkey_filename = str(request_data['pkey'])
 		selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read())
-		certificate_signing_request.sign(selected_key, "sha256")
 		certificate_signing_request.set_pubkey(selected_key)
+		certificate_signing_request.sign(selected_key, "sha256")
 		print csr_file.write(crypto.dump_certificate_request(crypto.FILETYPE_PEM, certificate_signing_request))
 		return 'CSR successfully created.', 201
 

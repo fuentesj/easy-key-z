@@ -6,6 +6,7 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 	$scope.showSuccessAlert = false;
 	$scope.showErrorAlert = false;
 	$scope.errorMessage = "";
+	$scope.csr = "";
 
 	$scope.privateKeySelected = function(private_key) {
 		$scope.private_key = private_key;
@@ -33,6 +34,7 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 		var promise = CsrService.generateCsr(commonName, organization, organizationalUnit, city, state, country, email, $scope.private_key, csrFilename)
 		promise.then(
 			function successfulCallback(response) {
+				console.log(response)
 				if ($scope.showErrorAlert) {
 					$scope.showErrorAlert = false;
 				}

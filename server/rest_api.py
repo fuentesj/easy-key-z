@@ -66,8 +66,8 @@ def generate_csr():
 		certificate_signing_request.set_pubkey(selected_key)
 		certificate_signing_request.sign(selected_key, "sha256")
 		print csr_file.write(crypto.dump_certificate_request(crypto.FILETYPE_PEM, certificate_signing_request))
-		var csr_data = csr_file.read()
-		var responseObject = {}
+		csr_data = csr_file.read()
+		responseObject = {}
 		responseObject['csr'] = csr_data,
 		responseObject['message'] = 'CSR successfully created.'
 		return jsonify(responseObject), 201

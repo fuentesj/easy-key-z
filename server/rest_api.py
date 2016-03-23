@@ -67,11 +67,10 @@ def generate_csr():
 		certificate_signing_request.sign(selected_key, "sha256")
 		print csr_file.write(crypto.dump_certificate_request(crypto.FILETYPE_PEM, certificate_signing_request))
 		var csr_data = csr_file.read()
-		var response = {
-			"csr": csr_data,
-			'message': 'CSR successfully created.'
-		}
-		return flask.jsonify(response, 201)
+		var responseObject = {}
+		responseObject['csr'] = csr_data,
+		responseObject['message'] = 'CSR successfully created.'
+		return jsonify(resultsresponseObject), 201
 
 @app.after_request
 def after_request(response):

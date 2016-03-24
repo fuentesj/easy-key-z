@@ -58,8 +58,8 @@ li {
 
 
 #csrGenerationButton {
-	margin-top: 15%;
-    margin-left: -96%;
+	margin-top: 19%;
+    margin-left: -67%;
 }
 
 .confirmation_message {
@@ -69,4 +69,13 @@ li {
 .far_right_col {
 	position: absolute;
 	right: 12px;
+}
+
+#csrLabel {
+	display: block;
+	margin-top: 61%;
+}
+
+#csrTextArea {
+	margin-top: 1%;
 }

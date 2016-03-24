@@ -16,7 +16,7 @@
 			</ul>
 
 			<h3 id="csrLabel">Certificate Signing Request</h3>
-			<textarea id="csrTextArea"rows="15" cols="40" disabled>{{ csr }}</textarea>
+			<textarea id="csrTextArea"rows="16" cols="40" disabled>{{ csr }}</textarea>
 
 			<button id="csrGenerationButton"type="button" class="btn btn-primary buffer-margin-top" ng-click="generateCsr(commonName, organization, organizationalUnit, city, state, country, email, private_key, csrFilename)">Generate CSR</button>
 

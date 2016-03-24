@@ -39,7 +39,7 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 					$scope.showErrorAlert = false;
 				}
 				$scope.showSuccessAlert = true;
-				$scope.csr = response.data["csr"][0]
+				$scope.csr = response.data["csr"][0].trim()
 			},
 			function errorCallback(err) {
 				if ($scope.showSuccessAlert) {

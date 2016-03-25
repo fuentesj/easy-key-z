@@ -12,6 +12,7 @@ CERTIFICATE_SIGNING_REQUEST_DIR = "certificate_signing_requests/"
 MAXIMUM_PRIVATE_KEY_SIZE_IN_BITS = 4096
 
 
+
 @app.route('/')
 @app.route('/csrGeneration')
 @app.route('/keypairGeneration')
@@ -22,14 +23,19 @@ def basic_pages(**kwargs):
 @app.route('/keypair', methods = ['POST'])
 def keypair():
 	request_data = json.loads(request.data.decode())
-	encryption_method = str(request_data['encryption_method'])
+	
+	potential_pkey_size = request_data['pkey_size']
+	if not potential_pkey_size.isdigit() or len(potential_pkey_size) > 4:
+		return 'Invalid private key size.', 400
 	pkey_size = int(request_data['pkey_size'])
+
+	encryption_method = str(request_data['encryption_method'])
 	pkey_file_name = str(request_data['pkey_file'])
 	passphrase = str(request_data['passphrase'])
 
 	if path.isfile(PRIVATE_KEY_DIR + pkey_file_name):
 		return 'Private key file ' + pkey_file_name + ' already exists.', 409
-	elif not pkey_size.isdigit() or pkey_size <= 0:
+	elif or pkey_size <= 0:
 		return 'Invalid private key size.', 400
 	elif 0 < pkey_size < 112:
 		return 'At minimum private key size must be greater than 112 bits.', 400

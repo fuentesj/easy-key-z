@@ -9,6 +9,8 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 PRIVATE_KEY_DIR = "private_keys/"
 CERTIFICATE_SIGNING_REQUEST_DIR = "certificate_signing_requests/"
 
+MAXIMUM_PRIVATE_KEY_SIZE_IN_BITS = 4096
+
 
 @app.route('/')
 @app.route('/csrGeneration')
@@ -27,10 +29,12 @@ def keypair():
 
 	if path.isfile(PRIVATE_KEY_DIR + pkey_file_name):
 		return 'Private key file ' + pkey_file_name + ' already exists.', 409
-	elif pkey_size <= 0:
+	elif !pkey_size.isdigit() or pkey_size <= 0:
 		return 'Invalid private key size.', 400
 	elif 0 < pkey_size < 112:
 		return 'At minimum private key size must be greater than 112 bits.', 400
+	elif MAXIMUM_PRIVATE_KEY_SIZE_IN_BITS < pkey_size:
+		return 'Private keys can be no larger than ' + MAXIMUM_PRIVATE_KEY_SIZE_IN_BITS + ' bits', 400
 	else:
 		private_key = crypto.PKey()
 		private_key.generate_key(crypto.TYPE_RSA, pkey_size)

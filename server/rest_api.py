@@ -35,7 +35,7 @@ def keypair():
 
 	if path.isfile(PRIVATE_KEY_DIR + pkey_file_name):
 		return 'Private key file ' + pkey_file_name + ' already exists.', 409
-	elif or pkey_size <= 0:
+	elif pkey_size <= 0:
 		return 'Invalid private key size.', 400
 	elif 0 < pkey_size < 112:
 		return 'At minimum private key size must be greater than 112 bits.', 400

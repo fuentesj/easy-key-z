@@ -23,7 +23,7 @@ app.factory("CsrService", ["$http", function($http){
 					'country': country,
 					'email': email,
 					'pkey': pkey,
-					'passphrase': passphrase
+					'passphrase': passphrase,
 					'csrFilename': csrFilename
 				}
 			})

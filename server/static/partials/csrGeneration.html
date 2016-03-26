@@ -60,7 +60,7 @@
 			<input class="form-control" ng-disabled="!private_key_selected" ng-model="email">
 
 			<h3>Passphrase</h3>
-			<input class="form-control" ng-disabled="!private_key_selected && isEncrypted" ng-model="passphrase" type="password">
+			<input class="form-control" ng-disabled="!private_key_selected && !isEncrypted" ng-model="passphrase" type="password">
 
 			<h3>CSR File Name</h3>
 			<input class="form-control" ng-disabled="!private_key_selected" ng-model="csrFilename">

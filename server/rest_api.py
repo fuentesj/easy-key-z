@@ -8,10 +8,7 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 
 PRIVATE_KEY_DIR = "private_keys/"
 CERTIFICATE_SIGNING_REQUEST_DIR = "certificate_signing_requests/"
-
 MAXIMUM_PRIVATE_KEY_SIZE_IN_BITS = 4096
-
-
 
 @app.route('/')
 @app.route('/csrGeneration')
@@ -72,16 +69,20 @@ def generate_csr():
 		certificate_signing_request.get_subject().C = str(request_data['country'])
 		certificate_signing_request.get_subject().emailAddress = str(request_data['email'])
 		selected_pkey_filename = str(request_data['pkey'])
-		selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read())
-		certificate_signing_request.set_pubkey(selected_key)
-		certificate_signing_request.sign(selected_key, "sha256")
-		print csr_file.write(crypto.dump_certificate_request(crypto.FILETYPE_PEM, certificate_signing_request))
-		csr_file.seek(0)
-		csr_data = csr_file.read()
-		responseObject = {}
-		responseObject['csr'] = csr_data,
-		responseObject['message'] = 'CSR successfully created.'
-		return jsonify(responseObject), 201
+		selected_pkey_passphrase = str(request_data['passphrase'])
+		try:
+			selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read(), selected_pkey_passphrase)
+			certificate_signing_request.set_pubkey(selected_key)
+			certificate_signing_request.sign(selected_key, "sha256")
+			print csr_file.write(crypto.dump_certificate_request(crypto.FILETYPE_PEM, certificate_signing_request))
+			csr_file.seek(0)
+			csr_data = csr_file.read()
+			responseObject = {}
+			responseObject['csr'] = csr_data,
+			responseObject['message'] = 'CSR successfully created.'
+			return jsonify(responseObject), 201
+		except Error, error:
+			return jsonify(str(error)), 400
 
 @app.after_request
 def after_request(response):

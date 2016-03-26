@@ -69,9 +69,9 @@ def generate_csr():
 		certificate_signing_request.get_subject().C = str(request_data['country'])
 		certificate_signing_request.get_subject().emailAddress = str(request_data['email'])
 		selected_pkey_filename = str(request_data['pkey'])
-		selected_pkey_passphrase = str(request_data['passphrase'])
 		try:
 			if 'passphrase' in request_data:
+				selected_pkey_passphrase = str(request_data['passphrase'])
 				selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read(), selected_pkey_passphrase)
 			else:
 				selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read())

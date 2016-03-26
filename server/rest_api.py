@@ -71,7 +71,10 @@ def generate_csr():
 		selected_pkey_filename = str(request_data['pkey'])
 		selected_pkey_passphrase = str(request_data['passphrase'])
 		try:
-			selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read(), selected_pkey_passphrase)
+			if 'passphrase' in request_data:
+				selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read(), selected_pkey_passphrase)
+			else:
+				selected_key = crypto.load_privatekey(crypto.FILETYPE_PEM, open(PRIVATE_KEY_DIR + selected_pkey_filename).read())
 			certificate_signing_request.set_pubkey(selected_key)
 			certificate_signing_request.sign(selected_key, "sha256")
 			print csr_file.write(crypto.dump_certificate_request(crypto.FILETYPE_PEM, certificate_signing_request))

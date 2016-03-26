@@ -7,6 +7,7 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 	$scope.showErrorAlert = false;
 	$scope.errorMessage = "";
 	$scope.csr = "";
+	$scope.isEncrypted = false;
 
 	$scope.privateKeySelected = function(private_key) {
 		$scope.private_key = private_key;

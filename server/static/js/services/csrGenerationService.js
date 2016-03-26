@@ -9,7 +9,7 @@ app.factory("CsrService", ["$http", function($http){
 			})
 		},
 
-		generateCsr: function(commonName, organization, organizationalUnit, city, state, country, email, pkey, passphrase, csrFilename) {
+		generateCsr: function(commonName, organization, organizationalUnit, city, state, country, email, pkey, passphrase, isEncrypted, csrFilename) {
 
 			return $http({
 				method: 'POST',
@@ -24,6 +24,7 @@ app.factory("CsrService", ["$http", function($http){
 					'email': email,
 					'pkey': pkey,
 					'passphrase': passphrase,
+					'isEncrypted': isEncrypted,
 					'csrFilename': csrFilename
 				}
 			})

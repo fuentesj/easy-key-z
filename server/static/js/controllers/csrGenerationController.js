@@ -32,7 +32,7 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 	});
 
 	$scope.generateCsr = function(commonName, organization, organizationalUnit, city, state, country, email, private_key, passphrase, csrFilename) {
-		var promise = CsrService.generateCsr(commonName, organization, organizationalUnit, city, state, country, email, $scope.private_key, passphrase, isEncrypted, csrFilename)
+		var promise = CsrService.generateCsr(commonName, organization, organizationalUnit, city, state, country, email, $scope.private_key, passphrase, csrFilename)
 		promise.then(
 			function successfulCallback(response) {
 				console.log(response)

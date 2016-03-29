@@ -14,11 +14,11 @@
     	* Enter CA-signed certificates into specified trust stores (at the moment, the plan is to support Java Key Stores).
 
 4. How can I deploy it?
-	* Ensure your target host is running Ubuntu (any major Linux distribution will likely work, but I've only used Ubuntu).
+	* Ensure your target host is running Ubuntu (any major Linux distribution will likely work, but I've only used Ubuntu). If you are using another OS, then be sure to update the Ansible playbook (e.g. user).
 	* Clone or fork this repository.
 	* Install Ansible on your development machine, and configure it so your target host is in your Ansible inventory.
-	* Use the following command to deploy Easy-Key-Z to your host:
-		* ```ansible-playbook deployment.yaml```
+	* Open a terminal window, cd into the server directory, and use the following command to deploy Easy-Key-Z to your host:
+		* ```$ ansible-playbook deployment.yaml```	
 
 4. What are the dependencies?
     * AngularJS

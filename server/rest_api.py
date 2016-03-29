@@ -1,6 +1,6 @@
 import json
-from OpenSSL import crypto
 import subprocess
+from OpenSSL import crypto
 from os import listdir,path
 from flask import Flask, request, jsonify, make_response
 app = Flask(__name__, static_path='/static')
@@ -50,7 +50,6 @@ def keypair():
 @app.route('/keypairs', methods = ['GET'])
 def fetch_keypairs():
 	keypair_list = listdir(PRIVATE_KEY_DIR);
-	print keypair_list
 	return jsonify(results=keypair_list), 200
 
 @app.route('/csr', methods = ['POST'])

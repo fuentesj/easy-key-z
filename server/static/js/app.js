@@ -10,6 +10,10 @@ app.config(function($routeProvider) {
 
 		.when('/csrGeneration', {
 			templateUrl: 'static/partials/csrGeneration.html'
+		})
+
+		.when('/truststoreConfiguration', {
+			templateUrl: 'static/partials/truststoreConfiguration.html'
 		});
 
 });

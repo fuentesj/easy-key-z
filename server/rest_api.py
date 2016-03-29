@@ -15,6 +15,7 @@ INVALID_PRIVATE_KEY_SIZE_ERROR_MSG = 'Invalid private key size.'
 @app.route('/')
 @app.route('/csrGeneration')
 @app.route('/keypairGeneration')
+@app.route('/truststoreConfiguration')
 def basic_pages(**kwargs):
     return make_response(open('templates/index.html').read())
 

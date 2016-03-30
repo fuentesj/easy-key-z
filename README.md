@@ -15,8 +15,8 @@
 
 4. How can I deploy it?
 	* Ensure your target host is running Ubuntu (any major Linux distribution will likely work, but I've only used Ubuntu). If you are using another OS, then be sure to update the Ansible playbook (e.g. user).
-	* Clone or fork this repository.
-	* Install Ansible on your development machine, and configure it so your target host is in your Ansible inventory.
+	* Fork this repository, and then clone it onto your development machine.
+	* Install Ansible on your development machine, and configure it so your target host is in your Ansible inventory. If you haven't worked with Ansible before, then I would suggest starting [here](http://docs.ansible.com/ansible/intro_getting_started.html).
 	* Open a terminal window, cd into the server directory, and use the following command to deploy Easy-Key-Z to your host:
 		* ```$ ansible-playbook deployment.yaml```	
 

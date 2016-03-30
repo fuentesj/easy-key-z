@@ -86,7 +86,7 @@ def generate_csr():
 		except Error, error:
 			return jsonify(str(error)), 400
 
-@app.route('truststores', methods= ['GET'])
+@app.route('/truststores', methods= ['GET'])
 def fetch_truststores():
 	truststore_list = listdir(TRUSTSTORE_DIR)
 	return jsonify(results=truststore_list), 200

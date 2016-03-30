@@ -8,6 +8,7 @@ app.config['PROPAGATE_EXCEPTIONS'] = True
 
 PRIVATE_KEY_DIR = "private_keys/"
 CERTIFICATE_SIGNING_REQUEST_DIR = "certificate_signing_requests/"
+TRUSTSTORE_DIR = 'certificates/'
 MAXIMUM_PRIVATE_KEY_SIZE_IN_BITS = 4096
 MINIMUM_PRIVATE_KEY_SIZE_IN_BITS = 512
 INVALID_PRIVATE_KEY_SIZE_ERROR_MSG = 'Invalid private key size.' 
@@ -50,7 +51,7 @@ def keypair():
 
 @app.route('/keypairs', methods = ['GET'])
 def fetch_keypairs():
-	keypair_list = listdir(PRIVATE_KEY_DIR);
+	keypair_list = listdir(PRIVATE_KEY_DIR)
 	return jsonify(results=keypair_list), 200
 
 @app.route('/csr', methods = ['POST'])
@@ -84,6 +85,11 @@ def generate_csr():
 			return jsonify(responseObject), 201
 		except Error, error:
 			return jsonify(str(error)), 400
+
+@app.route('truststores', methods= ['GET'])
+def fetch_truststores():
+	truststore_list = listdir(TRUSTSTORE_DIR)
+	return jsonify(results=truststore_list), 200
 
 @app.after_request
 def after_request(response):

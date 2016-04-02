@@ -6,7 +6,13 @@
 			<h2>Trust Store Options</h2>
 
 			<h3>Trust Stores</h3>
-			<ul class="unordered-content-list"></ul>
+			<ul class="unordered-content-list">
+				<li ng-repeat="truststore in truststores">
+					<a>
+						{{ truststore }}
+					</a>
+				</li>
+			</ul>
 
 			<h3>Alias</h3>
 			<input class="form-control">

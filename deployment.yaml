@@ -14,6 +14,7 @@
         - libffi-dev
         - libssl-dev
         - nginx
+        - default-jdk
 
     - name: Install uwsgi
       pip: name=uwsgi

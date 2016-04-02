@@ -1,6 +1,7 @@
 app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfigurationService", function($scope, TruststoreConfigurationService) {
 
 	$scope.truststores = undefined;
+	$scope.selectedTruststore = undefined;
 
 	$scope.$watch('$viewContentLoaded', function() {
 
@@ -13,8 +14,12 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 				console.log("error with loading trustores");
 			}
 		);
-
 	});
+
+	$scope.truststoreSelected = function(selectedTruststore) {
+		$scope.selectedTruststore = selectedTruststore;
+		console.log("truststore selected" + $scope.selectedTruststore);
+	}
 
 
 }]);

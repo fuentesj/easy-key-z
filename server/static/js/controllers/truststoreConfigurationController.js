@@ -35,15 +35,15 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 
 		console.log(postData);
 
-		// var promise = TruststoreConfigurationService.submitCertificate(postData);
-		// promise.then(
-		// 	function success(response) {
-
-		// 	},
-		// 	function error(error) {
-
-		// 	}
-		// );
+		var promise = TruststoreConfigurationService.submitCertificate(postData);
+		promise.then(
+			function success(response) {
+				console.log("success");
+			},
+			function error(error) {
+				console.log("error");
+			}
+		);
 	}
 
 

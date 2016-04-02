@@ -86,10 +86,23 @@ def generate_csr():
 		except Error, error:
 			return jsonify(str(error)), 400
 
-@app.route('/truststores', methods= ['GET'])
+@app.route('/truststores', methods = ['GET'])
 def fetch_truststores():
 	truststore_list = listdir(TRUSTSTORE_DIR)
 	return jsonify(results=truststore_list), 200
+
+@app.route('/truststore', methods = ['POST'])
+def add_certificate():
+	request_data = json.loads(request_data.decode())
+
+	certificate = str(request_data['certificate'])
+	with open ("current-cert.pem", "w+") as current_certificate_file:
+		current_certificate_file.write(certificate)
+
+	selected_truststore = str(request_data['selectedTruststore'])
+	alias = str(request_data['alias'])
+	passphrase = str(request_data['passphrase'])
+	subprocess.call('keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', "current-cert.pem")
 
 @app.after_request
 def after_request(response):

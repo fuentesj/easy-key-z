@@ -7,7 +7,7 @@
 
 			<h3>Trust Stores</h3>
 			<ul class="unordered-content-list">
-				<li ng-repeat="truststore in truststores" ng-model="selectedTruststore" ng-click="truststoreSelected(selectedTruststore)">
+				<li ng-repeat="truststore in truststores" ng-model="truststore" ng-click="truststoreSelected(truststore)">
 					<a>
 						{{ truststore }}
 					</a>

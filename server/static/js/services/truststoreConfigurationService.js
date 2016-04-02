@@ -12,7 +12,7 @@ app.factory("TruststoreConfigurationService", ["$http", function($http) {
 		submitCertificate: function(postData) {
 			return $http({
 				method: 'POST',
-				url: 'http://52.37.97.92:8080/truststores',
+				url: 'http://52.37.97.92:8080/truststore',
 				data: postData
 			})
 		}

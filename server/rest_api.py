@@ -93,7 +93,7 @@ def fetch_truststores():
 
 @app.route('/truststore', methods = ['POST'])
 def add_certificate():
-	request_data = json.loads(request_data.decode())
+	request_data = json.loads(request.data.decode())
 
 	certificate = str(request_data['certificate'])
 	with open ("current-cert.pem", "w+") as current_certificate_file:

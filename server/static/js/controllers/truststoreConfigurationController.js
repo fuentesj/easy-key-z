@@ -33,7 +33,7 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 			"certificate": $scope.certificate
 		};
 
-		console.log(postData.toString());
+		console.log(postData);
 
 		// var promise = TruststoreConfigurationService.submitCertificate(postData);
 		// promise.then(

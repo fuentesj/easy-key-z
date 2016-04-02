@@ -96,13 +96,18 @@ def add_certificate():
 	request_data = json.loads(request.data.decode())
 
 	certificate = str(request_data['certificate'])
-	with open (TRUSTSTORE_DIR + "current-cert.pem", "w+") as current_certificate_file:
+	with open(TRUSTSTORE_DIR + "current-cert.pem", "w+") as current_certificate_file:
 		current_certificate_file.write(certificate)
 
 	selected_truststore = str(request_data['selectedTruststore'])
 	alias = str(request_data['alias'])
 	passphrase = str(request_data['passphrase'])
-	subprocess.call('keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', "current-cert.pem")
+	return_code = subprocess.call('keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', "current-cert.pem")
+	if return_code == 0:
+		return jsonify("success"), 201
+	else:
+		return jsonify("error"), 500
+
 
 @app.after_request
 def after_request(response):

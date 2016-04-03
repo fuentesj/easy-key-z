@@ -99,10 +99,12 @@ def add_certificate():
 	with open(TRUSTSTORE_DIR + "current-cert.pem", "w") as current_certificate_file:
 		current_certificate_file.write(certificate)
 
+	truststore_file = TRUSTSTORE_DIR + "current-cert.pem"
+
 	selected_truststore = str(request_data['selectedTruststore'])
 	alias = str(request_data['alias'])
 	passphrase = str(request_data['passphrase'])
-	return_code = subprocess.call(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', "current-cert.pem"])
+	return_code = subprocess.call(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', truststore_file])
 	responseObject = {}
 	if return_code == 0:
 		responseObject['message'] = 'Certificate successfully added.'

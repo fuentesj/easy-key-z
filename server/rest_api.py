@@ -96,7 +96,7 @@ def add_certificate():
 	request_data = json.loads(request.data.decode())
 
 	certificate = str(request_data['certificate'])
-	with open(TRUSTSTORE_DIR + "current-cert.pem", "w+") as current_certificate_file:
+	with open(TRUSTSTORE_DIR + "current-cert.pem", "w") as current_certificate_file:
 		current_certificate_file.write(certificate)
 
 	selected_truststore = str(request_data['selectedTruststore'])

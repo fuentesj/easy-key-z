@@ -103,10 +103,13 @@ def add_certificate():
 	alias = str(request_data['alias'])
 	passphrase = str(request_data['passphrase'])
 	return_code = subprocess.call(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', "current-cert.pem"])
+	responseObject = {}
 	if return_code == 0:
-		return jsonify("success"), 201
+		responseObject['message'] = 'Certificate successfully added.'
+		return jsonify(responseObject), 201
 	else:
-		return jsonify("error"), 500
+		responseObject = ['message'] = 'An error was encountered while adding the certificate.'
+		return jsonify(responseObject), 500
 
 
 @app.after_request

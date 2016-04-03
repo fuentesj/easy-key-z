@@ -108,7 +108,7 @@ def add_certificate():
 		responseObject['message'] = 'Certificate successfully added.'
 		return jsonify(responseObject), 201
 	else:
-		responseObject = ['message'] = 'An error was encountered while adding the certificate.'
+		responseObject['message'] = 'An error was encountered while adding the certificate.'
 		return jsonify(responseObject), 500
 
 

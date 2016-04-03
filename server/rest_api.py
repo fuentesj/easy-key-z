@@ -102,7 +102,7 @@ def add_certificate():
 	selected_truststore = str(request_data['selectedTruststore'])
 	alias = str(request_data['alias'])
 	passphrase = str(request_data['passphrase'])
-	return_code = subprocess.call('keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', "current-cert.pem")
+	return_code = subprocess.call(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', "current-cert.pem"])
 	if return_code == 0:
 		return jsonify("success"), 201
 	else:

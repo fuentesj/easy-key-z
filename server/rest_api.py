@@ -104,14 +104,17 @@ def add_certificate():
 	selected_truststore = str(request_data['selectedTruststore'])
 	alias = str(request_data['alias'])
 	passphrase = str(request_data['passphrase'])
-	return_code = subprocess.call(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', truststore_file])
+	result_tuple = subprocess.Popen(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', truststore_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+	result_tuple.communicate(passphrase + "\n")
+	print "result tuple: " + result_tuple
 	responseObject = {}
-	if return_code == 0:
-		responseObject['message'] = 'Certificate successfully added.'
-		return jsonify(responseObject), 201
-	else:
-		responseObject['message'] = 'An error was encountered while adding the certificate.'
-		return jsonify(responseObject), 500
+	return jsonify(responseObject), 200
+	# if return_code == 0:
+	# 	responseObject['message'] = 'Certificate successfully added.'
+	# 	return jsonify(responseObject), 201
+	# else:
+	# 	responseObject['message'] = 'An error was encountered while adding the certificate.'
+	# 	return jsonify(responseObject), 500
 
 
 @app.after_request

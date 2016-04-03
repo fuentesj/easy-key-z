@@ -104,9 +104,9 @@ def add_certificate():
 	selected_truststore = str(request_data['selectedTruststore'])
 	alias = str(request_data['alias'])
 	passphrase = str(request_data['passphrase'])
-	result_tuple = subprocess.Popen(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', truststore_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-	result_tuple.communicate(passphrase + "\n")
-	print "result tuple: " + result_tuple
+	process = subprocess.Popen(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', truststore_file], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+	result_tuple = process.communicate(passphrase + "\n")
+	print result_tuple
 	responseObject = {}
 	return jsonify(responseObject), 200
 	# if return_code == 0:

@@ -104,16 +104,15 @@ def add_certificate():
 	alias = str(request_data['alias'])
 	passphrase = str(request_data['passphrase'])
 	process = subprocess.Popen(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', certificate_file_to_be_imported], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
-	result_tuple = process.communicate("yes" + "\n")
-	print result_tuple
+	process.communicate("yes" + "\n")
+	return_code = process.return_code
 	responseObject = {}
-	return jsonify(responseObject), 200
-	# if return_code == 0:
-	# 	responseObject['message'] = 'Certificate successfully added.'
-	# 	return jsonify(responseObject), 201
-	# else:
-	# 	responseObject['message'] = 'An error was encountered while adding the certificate.'
-	# 	return jsonify(responseObject), 500
+	if return_code == 0:
+		responseObject['message'] = 'Certificate successfully added.'
+		return jsonify(responseObject), 201
+	else:
+		responseObject['message'] = 'An error was encountered while adding the certificate.'
+		return jsonify(responseObject), 500
 
 
 @app.after_request

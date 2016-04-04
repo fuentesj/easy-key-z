@@ -1,7 +1,7 @@
 import json
 import subprocess
 from OpenSSL import crypto
-from os import listdir,path
+from os import listdir,path,remove
 from flask import Flask, request, jsonify, make_response
 app = Flask(__name__, static_path='/static')
 app.config['PROPAGATE_EXCEPTIONS'] = True

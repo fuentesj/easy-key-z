@@ -105,6 +105,7 @@ def add_certificate():
 	passphrase = str(request_data['passphrase'])
 	process = subprocess.Popen(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', certificate_file_to_be_imported], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 	process.communicate("yes" + "\n")
+	remove(TRUSTSTORE_DIR + "current-cert.pem")
 	return_code = process.returncode
 	responseObject = {}
 	if return_code == 0:

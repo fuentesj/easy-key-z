@@ -5,6 +5,9 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 	$scope.alias = undefined;
 	$scope.passphrase = undefined,
 	$scope.certificate = undefined;
+	$scope.showSuccessAlert = false;
+	$scope.showErrorAlert = false;
+	$scope.errorMessage = undefined;
 
 	$scope.$watch('$viewContentLoaded', function() {
 
@@ -38,10 +41,18 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 		var promise = TruststoreConfigurationService.submitCertificate(postData);
 		promise.then(
 			function success(response) {
-				console.log("success");
+				if ($scope.showErrorAlert) {
+					$scope.showErrorAlert = false;
+				}
+				$scope.showSuccessAlert = true
 			},
 			function error(error) {
-				console.log("error");
+				if ($scope.showSuccessAlert) {
+					$scope.showSuccessAlert = false;
+				}
+				$scope.errorMessage = error["data"]
+				$scope.showErrorAlert = true;
+
 			}
 		);
 	}

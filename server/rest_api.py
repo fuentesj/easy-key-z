@@ -105,7 +105,7 @@ def add_certificate():
 	passphrase = str(request_data['passphrase'])
 	process = subprocess.Popen(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', certificate_file_to_be_imported], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 	process.communicate("yes" + "\n")
-	return_code = process.return_code
+	return_code = process.returncode
 	responseObject = {}
 	if return_code == 0:
 		responseObject['message'] = 'Certificate successfully added.'

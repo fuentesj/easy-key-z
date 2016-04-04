@@ -103,7 +103,7 @@ def add_certificate():
 	selected_truststore = TRUSTSTORE_DIR + str(request_data['selectedTruststore'])
 	alias = str(request_data['alias'])
 	passphrase = str(request_data['passphrase'])
-	process = subprocess.Popen(['sudo keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', certificate_file_to_be_imported], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+	process = subprocess.Popen(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', certificate_file_to_be_imported], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 	result_tuple = process.communicate("yes" + "\n")
 	print result_tuple
 	responseObject = {}

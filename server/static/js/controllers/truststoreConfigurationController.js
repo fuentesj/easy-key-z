@@ -8,6 +8,7 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 	$scope.showSuccessAlert = false;
 	$scope.showErrorAlert = false;
 	$scope.errorMessage = undefined;
+	$scope.successMessage = undefined;
 
 	$scope.$watch('$viewContentLoaded', function() {
 
@@ -24,7 +25,6 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 
 	$scope.truststoreSelected = function(selectedTruststore) {
 		$scope.selectedTruststore = selectedTruststore;
-		console.log("truststore selected" + $scope.selectedTruststore);
 	}
 
 	$scope.submitCertificate = function() {
@@ -52,18 +52,18 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 				if ($scope.showErrorAlert) {
 					$scope.showErrorAlert = false;
 				}
-				$scope.showSuccessAlert = true
+				$scope.successMessage = response["message"];
+				$scope.showSuccessAlert = true;
 			},
 			function error(error) {
 				if ($scope.showSuccessAlert) {
 					$scope.showSuccessAlert = false;
 				}
-				$scope.errorMessage = error["data"]["message"]
+				$scope.errorMessage = error["data"]["message"];
 				$scope.showErrorAlert = true;
 
 			}
 		);
 	}
-
 
 }]);

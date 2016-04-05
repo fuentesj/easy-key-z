@@ -100,16 +100,17 @@ def add_certificate():
 		current_certificate_file.write(certificate)
 
 	certificate_file_to_be_imported = TRUSTSTORE_DIR + "current-cert.pem"
-	selected_truststore = TRUSTSTORE_DIR + str(request_data['selectedTruststore'])
+	truststore_file = str(request_data['selectedTruststore'])
+	selected_truststore_filepath = TRUSTSTORE_DIR + truststore_file
 	alias = str(request_data['alias'])
 	passphrase = str(request_data['passphrase'])
-	process = subprocess.Popen(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore, '-storepass', passphrase, '-file', certificate_file_to_be_imported], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+	process = subprocess.Popen(['keytool', '-import', '-alias', alias, '-keystore', selected_truststore_filepath, '-storepass', passphrase, '-file', certificate_file_to_be_imported], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
 	process.communicate("yes" + "\n")
 	remove(TRUSTSTORE_DIR + "current-cert.pem")
 	return_code = process.returncode
 	responseObject = {}
 	if return_code == 0:
-		responseObject['message'] = 'Certificate with alias {} successfully added.'.format(alias)
+		responseObject['message'] = 'Certificate with alias {} successfully added to {}.'.format(alias, truststore_file)
 		return jsonify(responseObject), 201
 	else:
 		responseObject['message'] = 'An error was encountered while adding the certificate.'

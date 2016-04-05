@@ -26,7 +26,7 @@
 			<button class="btn btn-primary" ng-click="submitCertificate()">Add Public Certificate</button>
 
 			<div class="alert alert-success buffer-margin-top confirmation_message" ng-show="showSuccessAlert">
-			   <strong>Certificate added!</strong> 
+			   <strong>{{ successMessage }}</strong> 
 			</div>
 
 			<div class="alert alert-danger buffer-margin-top confirmation_message" ng-show="showErrorAlert">

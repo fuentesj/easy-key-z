@@ -5,7 +5,7 @@
 
 			<h2>Trust Store Options</h2>
 
-			<h3>Trust Stores</h3>
+			<h3>Trust Stores <span class="required">*</span></h3>
 			<ul class="unordered-content-list" required>
 				<li ng-repeat="truststore in truststores" ng-click="truststoreSelected(truststore)">
 					<a>
@@ -14,21 +14,20 @@
 				</li>
 			</ul>
 
-			<h3>Alias</h3>
-			<input class="form-control" ng-model="alias" required>
+			<h3>Alias <span class="required">*</span></h3>
+			<input class="form-control" ng-model="alias">
 
-			<h3>Passphrase</h3>
+			<h3>Passphrase <span class="required">*</span></h3>
 			<input class="form-control" ng-model="passphrase" type="password">
 
-			<h3>Public Certificate</h3>
-			<textarea cols="60" rows="13" ng-model="certificate" required></textarea>
+			<h3>Public Certificate <span class="required">*</span></h3>
+			<textarea cols="60" rows="13" ng-model="certificate"></textarea>
 
 			<button class="btn btn-primary" ng-click="submitCertificate()">Add Public Certificate</button>
 
 			<div class="alert alert-success buffer-margin-top confirmation_message" ng-show="showSuccessAlert">
 			   <strong>Certificate added!</strong> 
 			</div>
-
 
 			<div class="alert alert-danger buffer-margin-top confirmation_message" ng-show="showErrorAlert">
 			   <strong>{{ errorMessage }}</strong> 

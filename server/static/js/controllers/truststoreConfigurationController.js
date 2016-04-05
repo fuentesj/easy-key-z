@@ -29,6 +29,15 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 
 	$scope.submitCertificate = function() {
 
+		if (!scope.selectedTruststore || !scope.alias || !scope.certificate) {
+			$scope.errorMessage = "Please fill out all required fields."
+			if ($scope.showSuccessAlert) {
+					$scope.showSuccessAlert = false;
+			}
+			$scope.showErrorAlert = true;
+			return;
+		}
+
 		var postData = {
 			"selectedTruststore": $scope.selectedTruststore,
 			"alias": $scope.alias,
@@ -36,7 +45,6 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 			"certificate": $scope.certificate
 		};
 
-		console.log(postData);
 
 		var promise = TruststoreConfigurationService.submitCertificate(postData);
 		promise.then(

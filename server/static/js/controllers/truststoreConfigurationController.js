@@ -52,7 +52,7 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 				if ($scope.showErrorAlert) {
 					$scope.showErrorAlert = false;
 				}
-				$scope.successMessage = response["message"];
+				$scope.successMessage = response["data"]["message"];
 				$scope.showSuccessAlert = true;
 			},
 			function error(error) {

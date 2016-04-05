@@ -109,7 +109,7 @@ def add_certificate():
 	return_code = process.returncode
 	responseObject = {}
 	if return_code == 0:
-		responseObject['message'] = 'Certificate successfully added.'
+		responseObject['message'] = 'Certificate with alias {} successfully added.'.format(alias)
 		return jsonify(responseObject), 201
 	else:
 		responseObject['message'] = 'An error was encountered while adding the certificate.'

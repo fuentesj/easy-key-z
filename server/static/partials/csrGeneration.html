@@ -6,7 +6,7 @@
 			<h2>CSR Options</h2>
 
 
-			<h3>Private Keys</h3>
+			<h3>Private Keys <span class="required">*</span></h3>
 			<ul class="unordered-content-list">
 				<li ng-repeat="private_key in private_keys" ng-click="privateKeySelected(private_key)" ng-class="{sel: $index == selected}" ng-model="private_key">
 					<a>
@@ -38,7 +38,7 @@
 
 		<div class="col-md-4 second_column far_right_col">
 
-			<h3>Common Name (CN)</h3>
+			<h3>Common Name (CN) <span class="required">*</span></h3>
 			<input class="form-control" ng-disabled="!private_key_selected" ng-model="commonName">
 
 			<h3>Organization (O)</h3>
@@ -62,7 +62,7 @@
 			<h3>Passphrase</h3>
 			<input class="form-control" ng-disabled="!private_key_selected || !isEncrypted" ng-model="passphrase" type="password">
 
-			<h3>CSR File Name</h3>
+			<h3>CSR File Name <span class="required">*</span></h3>
 			<input class="form-control" ng-disabled="!private_key_selected" ng-model="csrFilename">
 			
 

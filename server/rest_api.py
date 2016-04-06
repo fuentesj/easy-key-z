@@ -60,7 +60,7 @@ def generate_csr():
 	csr_filename = str(request_data['csrFilename'])
 	with open(CERTIFICATE_SIGNING_REQUEST_DIR + csr_filename, "w+") as csr_file:
 		certificate_signing_request = crypto.X509Req()
-		for key in request_data.keys:
+		for key in request_data:
 			print key				
 		certificate_signing_request.get_subject().CN = str(request_data['commonName'])
 		certificate_signing_request.get_subject().O = str(request_data['organization'])

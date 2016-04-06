@@ -49,6 +49,7 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 			}
 			$scope.errorMessage = "Please fill out all required fields.";
 			$scope.showErrorAlert = true;
+			return;
 		}
 
 		var postData = {

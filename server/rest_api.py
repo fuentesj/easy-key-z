@@ -60,8 +60,6 @@ def generate_csr():
 	csr_filename = str(request_data['csrFilename'])
 	with open(CERTIFICATE_SIGNING_REQUEST_DIR + csr_filename, "w+") as csr_file:
 		certificate_signing_request = crypto.X509Req()
-		for key in request_data:
-			print key				
 		certificate_signing_request.get_subject().CN = str(request_data['commonName'])
 		certificate_signing_request.get_subject().O = str(request_data['organization'])
 		certificate_signing_request.get_subject().OU = str(request_data['organizationalUnit'])
@@ -69,7 +67,7 @@ def generate_csr():
 		certificate_signing_request.get_subject().ST = str(request_data['state'])
 		certificate_signing_request.get_subject().C = str(request_data['country'])
 		certificate_signing_request.get_subject().emailAddress = str(request_data['email'])
-		selected_pkey_filename = str(request_data['pkey'])
+		selected_pkey_filename = str(request_data['private_key'])
 		try:
 			if 'passphrase' in request_data:
 				selected_pkey_passphrase = str(request_data['passphrase'])

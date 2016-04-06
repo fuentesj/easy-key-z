@@ -30,7 +30,7 @@ app.controller("TruststoreConfigurationController", ["$scope", "TruststoreConfig
 	$scope.submitCertificate = function() {
 
 		if (!$scope.selectedTruststore || !$scope.alias || !$scope.passphrase || !$scope.certificate) {
-			$scope.errorMessage = "Please fill out all required fields."
+			$scope.errorMessage = "Please fill out all required fields.";
 			if ($scope.showSuccessAlert) {
 				$scope.showSuccessAlert = false;
 			}

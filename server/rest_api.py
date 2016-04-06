@@ -67,7 +67,7 @@ def generate_csr():
 		certificate_signing_request.get_subject().ST = str(request_data['state'])
 		certificate_signing_request.get_subject().C = str(request_data['country'])
 		certificate_signing_request.get_subject().emailAddress = str(request_data['email'])
-		selected_pkey_filename = str(request_data['pkey'])
+		selected_pkey_filename = str(request_data['private_key'])
 		try:
 			if 'passphrase' in request_data:
 				selected_pkey_passphrase = str(request_data['passphrase'])

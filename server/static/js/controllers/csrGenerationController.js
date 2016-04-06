@@ -43,7 +43,7 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 
 	$scope.generateCsr = function() {
 		
-		if (!$scope.private_key || !$scope.commonName || !$scope.csrFilename || $scope.country.length() != 2) {
+		if (!$scope.private_key || !$scope.commonName || !$scope.csrFilename || $scope.country.length != 2) {
 			if ($scope.showSuccessAlert) {
 				$scop.showSuccessAlert = false;
 			}

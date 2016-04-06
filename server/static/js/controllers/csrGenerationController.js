@@ -8,16 +8,16 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 	$scope.errorMessage = "";
 	$scope.csr = "";
 	$scope.isEncrypted = false;
-	$scope.commonName = "";
-	$scope.organization = "";
-	$scope.organizationalUnit = "";
-	$scope.city = "";
-	$scope.state = "";
-	$scope.country = "";
-	$scope.email = "";
-	$scope.private_key = "";
-	$scope.passphrase = "";
-	$scope.csrFilename = "";
+	$scope.commonName = null;
+	$scope.organization = null;
+	$scope.organizationalUnit = null;
+	$scope.city = null;
+	$scope.state = null;
+	$scope.country = null;
+	$scope.email = null;
+	$scope.private_key = null;
+	$scope.passphrase = null;
+	$scope.csrFilename = null;
 
 	$scope.privateKeySelected = function(private_key) {
 		$scope.private_key = private_key;
@@ -43,7 +43,7 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 
 	$scope.generateCsr = function() {
 		
-		if (!$scope.private_key || !$scope.commonName.trim() || $scope.csrFilename.trim()) {
+		if (!$scope.private_key || !$scope.commonName || $scope.csrFilename) {
 			if ($scope.showSuccessAlert) {
 				$scop.showSuccessAlert = false;
 			}

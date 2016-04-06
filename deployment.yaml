@@ -20,7 +20,7 @@
       pip: name=uwsgi
 
     - name: Pull easy-key-z source code
-      git: repo=https://github.com/fuentesj/easy-key-z.git dest=/opt/easy-key-z
+      git: repo=https://github.com/fuentesj/easy-key-z.git dest=/opt/easy-key-z version=development
 
     - name: Install requirements.txt
       pip: requirements=/opt/easy-key-z/server/requirements.txt extra_args=--ignore-installed

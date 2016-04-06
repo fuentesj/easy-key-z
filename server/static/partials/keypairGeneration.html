@@ -15,10 +15,10 @@
 			<h3>Passphrase</h3>
 			<input id="passphrase" ng-disabled="!encryption_method" ng-model="passphrase" class="form-control" type="password">
 
-			<h3>Size</h3>
+			<h3>Size <span class="required">*</span></h3>
 			<input id="privateKeySize" class="form-control" ng-model="pkey_size" placeholder="Default size is 512 bits">
 
-			<h3>Filename</h3>
+			<h3>Filename <span class="required">*</span></h3>
 			<input id="privateKeyFile" class="form-control" ng-model="pkey_file" placeholder="Default filename is pkey.pem">
 
 			<button type="button" class="btn btn-primary buffer-margin-top" ng-click="generateKeypair(encryption_method, pkey_size, pkey_file, passphrase)">Generate Private Key</button>

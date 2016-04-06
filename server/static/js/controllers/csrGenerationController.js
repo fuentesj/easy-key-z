@@ -8,6 +8,16 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 	$scope.errorMessage = "";
 	$scope.csr = "";
 	$scope.isEncrypted = false;
+	$scope.commonName = "";
+	$scope.organization = "";
+	$scope.organizationalUnit = "";
+	$scope.city = "";
+	$scope.state = "";
+	$scope.country = "";
+	$scope.email = "";
+	$scope.private_key = "";
+	$scope.passphrase = "";
+	$scope.csrFilename = "";
 
 	$scope.privateKeySelected = function(private_key) {
 		$scope.private_key = private_key;
@@ -31,8 +41,30 @@ app.controller("CsrGenerationController", ["$scope", "CsrService", function($sco
 		
 	});
 
-	$scope.generateCsr = function(commonName, organization, organizationalUnit, city, state, country, email, private_key, passphrase, csrFilename) {
-		var promise = CsrService.generateCsr(commonName, organization, organizationalUnit, city, state, country, email, $scope.private_key, passphrase, csrFilename)
+	$scope.generateCsr = function() {
+		
+		if (!$scope.private_key || !$scope.commonName.trim() || $scope.csrFilename.trim()) {
+			if ($scope.showSuccessAlert) {
+				$scop.showSuccessAlert = false;
+			}
+			$scope.errorMessage = "Please fill out all required fields.";
+			$scope.showErrorAlert = true;
+		}
+
+		var postData = {
+			"commonName": $scope.commonName,
+			"organization": $scope.organization,
+			"organizationalUnit": $scope.organizationalUnit,
+			"city": $scope.city,
+			"state": $scope.state,
+			"country": $scope.country,
+			"email": $scope.email,
+			"private_key": $scope.private_key,
+			"passphrase": $scope.passphrase,
+			"csrFilename": $scope.csrFilename
+		};
+
+		var promise = CsrService.generateCsr(postData)
 		promise.then(
 			function successfulCallback(response) {
 				console.log(response)
